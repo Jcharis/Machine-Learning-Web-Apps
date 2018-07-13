@@ -1,0 +1,50 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+<!-- Main Content Is Here -->
+
+
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Simplified MLApp</h1>
+          <p>Simplify Your Machine Learning and Data Exploration(Semi-Automated ML)</p>
+          <p><a href="{{ url_for('index')}}" type="button" class="btn btn-danger" > Refresh</a></p>
+        </div>
+      </div>
+
+  <div class="container">
+    <h2>Results</h2>
+    
+  </div>
+
+
+  
+
+
+
+
+
+
+   
+
+
+
+
+
+{% endblock %}
+
+<!-- External 3-Party JS Is Here -->
+
+{% block scripts %}
+
+{{ super() }} 
+
+
+
+
+{% endblock%}
+
+
+

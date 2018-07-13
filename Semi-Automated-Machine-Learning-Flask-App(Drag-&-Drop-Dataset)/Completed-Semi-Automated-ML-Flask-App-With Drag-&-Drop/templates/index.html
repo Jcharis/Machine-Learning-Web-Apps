@@ -1,0 +1,99 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+<!-- Main Content Is Here -->
+ <!-- Styles for  Loading and Spinning -->
+<style type="text/css">
+    body{
+  font:15px/1.5 Arial, Helvetica,sans-serif;
+}
+    .spinner-1:before{
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      top:50%;
+      left: 50%;
+      height: 60px;
+      width: 60px;
+      margin-top: -30px;
+      margin-left: -30px;
+      border-radius: 50%;
+      border:6px solid transparent;
+      border-top-color: #0091EA;
+      animation: spinner 0.7s linear infinite;
+    }
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    li { background-color:#BDBDBD; }
+    li:nth-child(odd) { background-color:#0091EA; }
+    </style>
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/styles.css')}}">
+{% endblock %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+     <div class="container">
+      <div class="jumbotron">
+         <h1 class="display-3">Simplified MLApp</h1>
+          <p>Simplify Your Machine Learning and Data Exploration(Semi-Automated ML)</p>
+          <p><a href="{{ url_for('index')}}" type="button" class="btn btn-primary" > Refresh</a></p>
+        </div>
+      
+
+      <div class="container">
+          <div class="main">
+              <div class="row">
+                <div class="col-md-8" style="background-color:#1dcaff">
+                  <h2 style="color:#fff">Upload Your Dataset</h2>
+                    <p style="color:#fff">We only accept csv format numerical data</p>
+                      <form method=POST enctype=multipart/form-data action="{{ url_for('dataupload') }}" class="form-group">
+                        <div class="form-group">
+                          <input type="file" name="csv_data">
+                        <br/>
+                        </div>
+                        
+                        <input type="submit"  onclick="myAnalyser()" class="btn btn-primary mb-2"> 
+                        <input type="reset"  value="Reset" class="btn btn-danger mb-2">
+                      </form>
+                      <br/>
+                </div>      
+              </div>
+        
+      </div>
+      </div>
+      </div>
+ 
+
+{% endblock %}
+
+<!-- Main External 3-Party JS Is Here -->
+
+{% block scripts %}
+
+{{ super() }} 
+ <!-- Function to Show Spinning  -->
+<script>
+function myAnalyser() {
+    document.querySelector('.main div').style.display = 'none';
+  //Hide the main division
+  document.querySelector('.main').classList.add('spinner-1');
+  // Server request
+  setTimeout(() => {
+  document.querySelector('.main').classList.remove('spinner-1');
+  //Remove the animation
+  document.querySelector('.main div').style.display = 'block';
+  //Show the main division
+  },5000);//Number of seconds to last
+}
+</script>
+
+
+{% endblock%}
+
+
+

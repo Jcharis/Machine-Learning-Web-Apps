@@ -1,0 +1,116 @@
+{%extends "bootstrap/base.html" %}
+
+{% block content %}
+<!-- Main Content Is Here -->
+
+
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Simplified MLApp</h1>
+          <p>Simplify Your Machine Learning and Data Exploration(Semi-Automated ML)</p>
+          <p><a href="{{ url_for('index')}}" type="button" class="btn btn-danger" > Refresh</a></p>
+        </div>
+      </div>
+
+
+
+  <div class="container">
+        <!-- Details Page  -->
+        <div class="row">
+          <div class="col-md-5" style="background-color:#3f76ef">
+            <h2>Details of Dataset</h2>
+            
+            <div class="alert alert-info" role="alert">
+              <p><span style="color:red">Filename</span>: {{ filename }}</p>
+            </div>
+            
+            <div class="alert alert-danger" role="alert">
+              <p><span style="color:red">Time Stamp</span>: {{ date }} </p>
+            </div>
+
+            <h2>Exploratory Data Analysis</h2>
+            
+            <div class="alert alert-info" role="alert"><p><span style="color:red">Size</span>: {{ df_size }}</p></div>
+            <div class="alert alert-danger" role="alert"><p><span style="color:red">Shape</span>: <br/>
+            (Row,Columns)<br/>
+            {{ df_shape }}</p></div>
+            
+            <div class="alert alert-info" role="alert">
+              <p><span style="color:red">Columns</span>: 
+                  {% for i in df_columns %}
+                  
+                  <li>{{ i}}</li> 
+                  
+                  {% endfor %}
+              </p>
+            </div>
+
+            <div class="alert alert-danger" role="alert">
+              <p><span style="color:red">Target</span>: {{ df_targetname }}</p>
+            </div>
+                <h2>Model Score</h2>
+            
+            {% for mlaccuracy  in model_results %}
+            
+            <div class="list-group">
+                <a href="#" class="list-group-item">
+                  <span style="color:red">ML Algorithm | Mean Accuracy | Standard Deviation</span> </a>
+                <a href="#" class="list-group-item">{{ mlaccuracy }}</a>
+           </div>
+
+            {% endfor %}
+         
+          </div>
+          
+           <!-- Viewing Dataset As a Table-->
+          <div class="col-md-6">
+            <h2>Details of Dataset</h2>
+            <p>{{ fullfile }} </p>
+            <button onclick="displayDataset()" class="btn btn-primary">View Dataset</button>
+            <br/>
+            <br/>
+            <div id="myDIV">
+              {{ dfplot.to_html(classes="table table-striped table-hover",na_rep="-") | safe}}
+            </div>
+            
+          
+
+          </div>
+          
+          
+        </div>
+
+        
+
+      </div>
+
+
+{% endblock %}
+
+<!-- Main External 3-Party JS Is Here -->
+
+{% block scripts %}
+
+{{ super() }} 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<!-- Function for Displaying Table -->
+<script>
+function displayDataset() {
+    var x = document.getElementById("myDIV");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>
+
+
+
+{% endblock%}
+
+
+

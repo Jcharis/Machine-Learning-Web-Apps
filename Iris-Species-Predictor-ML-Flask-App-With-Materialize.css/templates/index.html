@@ -1,0 +1,130 @@
+{% extends "material/base.html" %}
+{% block content %}
+<div class="showcase container purple lighten-3">
+    <div class="row">
+        <div class="col 12 m10 offset-ml center">
+            <h2>Iris Species Predictor </h2>
+            <p>ML Web App</p>
+            <a href="{{url_for('index')}}" class="btn btn-small purple white-text waves-effect waves-dark">Reset</a>
+            <a href="{{url_for('preview')}}" class="btn btn-small white purple-text waves-effect waves-dark">View Dataset</a>
+        </div>
+
+    </div>
+</div>
+<section class="section section-signup">
+        <div class="container">
+          <div class="row">
+           
+            <div class="col s12 m4">
+              <div class="card-panel grey lighten-4 grey-text text-darken-4 z-depth-0">
+                <form action="{{ url_for('analyze')}}" method="POST">
+                  <div class="input-field">
+                   <p class="range-field">
+                        <input type="range" id="sepal_lengthInput" name="sepal_length" min="4" max="8" value="0" step="0.1" >
+                    <label for="Sepal Length">Sepal Length</label>
+                    
+                  </div>
+                   <div class="input-field">
+                   <p class="range-field">
+                        <input type="range" id="sepal_widthInput" name="sepal_width" min="2" max="5" value="0" step="0.1"> 
+                    <label for="">Sepal Width</label>
+                  </div>
+                   <div class="input-field">
+                   <p class="range-field">
+                        <input type="range" id="petal_lengthInput" name="petal_length" min="0" max="7" value="0"
+                   step="0.1" >
+                    <label for="">Petal Length</label>
+                  </div>
+                  <div class="input-field">
+                   <p class="range-field">
+                        <input type="range" id="petal_widthInput" name="petal_width" min="0" max="3" value="0"
+                  step="0.1">
+                    <label for="">Petal Width</label>
+                  </div>
+                  
+                  <div class="input-field">
+                    <select id="role" name="model_choice">
+                      <option value="" disabled selected>Select Model</option>
+                      <option value="logitmodel">Logistic Regression</option>
+                        <option value="knnmodel">K-Nearest Neighbour</option>
+                        <option value="svmmodel">SVM</option>
+                    </select>
+                    <label for="role">Select ML Algorithm</label>
+                  </div>
+                  <input type="submit" value="Predict" class="btn btn-small purple waves-effect waves-light btn-extend">
+                  <input type="reset" value="Clear" class="btn btn-small white waves-effect waves-light btn-extend">
+                </form>
+              </div>
+            </div>
+             <div class="col s12 m4 offers">
+                     <div class="card-panel purple lighten-4 grey-text text-darken-4 z-depth-0">
+                         
+                           <p>Sepal Length: {{ sepal_length }}</p>
+            <p>Sepal Width: {{ sepal_width }}</p>
+            <p>Petal Length: {{ petal_length}} </p>
+            <p>Petal Width: {{ petal_width}}</p>
+         Using {{ model_selected }} on {{ clean_data }}
+              
+            </div>
+                     </div>
+                     
+          
+    
+            
+    
+             <div class="col s12 m4 offers">
+                <h5>Prediction</h5>
+                  <div class="collection" role="alert">
+                    <p  class="collection-item active purple">Predicted result {{ result_prediction }} </p>
+                </div>       				
+                <div class="card-image waves-effect waves-block waves-light">
+                    
+                      {% if result_prediction == ['versicolor'] %}
+                        <img src="static/imgs/iris_versicolor.jpg" width="200px" height="200px">
+    
+                        {% elif result_prediction == ['setosa']  %}
+                          <img src="static/imgs/iris_setosa.jpg" width="200px" height="200px">
+                        
+                        {% elif result_prediction == ['virginica']  %}
+                          <img src="static/imgs/iris_virginica.jpg"width="200px" height="200px" >
+    
+                        {% else %}
+                            <p></p>
+                        
+                
+                       {% endif%}
+                </div>
+              
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+      {% endblock%}
+
+      {% block scripts %}
+      {{super()}}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <!-- Compiled and minified JavaScript -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+      <!-- <script type="text/javascript">
+           document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('select');
+          var instances = M.FormSelect.init(elems, options);
+        });
+      </script> -->
+      
+      <script>
+          // Or with jQuery
+      
+        $(document).ready(function(){
+          $('select').formSelect();
+        });
+      </script>
+      
+      {% endblock %}

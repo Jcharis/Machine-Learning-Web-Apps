@@ -1,0 +1,35 @@
+{% extends "material/base.html" %}
+{% block content %}
+<div class="showcase container purple lighten-3">
+    <div class="row">
+        <div class="col 12 m10 offset-ml center">
+            <h2>Iris Species Predictor </h2>
+            <p>ML Web App</p>
+            <a href="{{url_for('index')}}" class="btn btn-small purple white-text waves-effect waves-dark">Back</a>
+           
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+        {{ df_view.to_html(classes="table striped",na_rep="-") | safe}}
+
+</div>
+
+    
+
+
+
+
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ super() }}
+
+
+
+
+{% endblock %}

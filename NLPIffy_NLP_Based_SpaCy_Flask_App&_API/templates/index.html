@@ -1,0 +1,252 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+<head>
+	<!-- <title>SpaCify</title> -->
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/custom.css')}}">
+</head>
+<body>
+{% block navbar %}
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">NLPiffy</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('index')}}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('basic_api')}}">Api</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{{url_for('imagescloud')}}">ImageCloud</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('about')}}">About</a>
+          </li>
+        </ul>
+        
+      </div>
+    </nav>
+
+    {% endblock %}
+    <br/>
+    <br/>
+     <br/>
+    <br/>
+
+      <div class="jumbotron">
+        <div class="container">
+        <h3>NLPiffy</h3>
+        <p class="lead">Natural Language Processing simplified...</p>
+        <a class="btn btn-lg btn-primary" href="{{url_for('index')}}" role="button">Refresh</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <p>Enter Your Text Below</p>
+    	<form class="form-group mt-2 mt-md-0" method="POST" action="/analyze">
+         <textarea name="rawtext" cols="3" rows="3" class="form-control" required="true"></textarea>
+         <br/>
+         <button class="btn btn-outline-success " type="reset">Clear</button>
+          <button class="btn btn-outline-primary " type="submit">Nlpiffy</button>
+        </form>
+    </div>
+      <!-- Analysis Begins Here -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h6>Your Text was</h6>    
+          <div class="alert alert-info" role="alert"><p>{{ctext}}</p></div>
+            <div class="alert alert-info" role="alert"><p>Time Elapsed: <span style="color:#0091EA;">{{ final_time }} </span></p>
+        </div>
+      
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="container"><h1>Results </h1>
+<div id="exTab1" class="container">	
+<ul  class="nav nav-pills">
+			<li class="active">
+        <a  href="#1a" data-toggle="tab">Tokens</a>
+			</li>
+			<li><a href="#1b" data-toggle="tab">Word Info</a>
+			</li>
+			<li><a href="#2a" data-toggle="tab">Named Entities</a>
+			</li>
+			<li><a href="#3a" data-toggle="tab">POS</a>
+			</li>
+  		<li><a href="#4a" data-toggle="tab">Sentiment</a>
+			</li>
+			<li><a href="#5a" data-toggle="tab">Meaning</a>
+			</li>
+		</ul>
+
+			<div class="tab-content clearfix">
+			  <div class="tab-pane active" id="1a">
+          <h3>Tokens</h3>
+          {% for item in custom_tokens %}
+          <li>{{item}}</li>
+          {% endfor %}
+				</div>
+				<div class="tab-pane" id="1b">
+          <h3>Word Info</h3>
+          <div class="container">
+             <!-- WORD INFO -->
+            <div class="card-footer text-muted">
+                  <table class="table table-striped table-hover table-dark" >
+                      
+                  <thead>
+                    <tr>
+                      <th scope="col">Token</th>
+                      <th scope="col">Lemma</th>
+                      <th scope="col">Shape</th>
+                      <th scope="col">Alpha</th>
+                      <th scope="col">Stopword</th>
+                    </tr>
+                    {% for item in custom_wordinfo %}
+                  </thead>
+                  <tbody>
+                    <tr>
+                      
+                      <td>{{item[0]}}</td>
+                      <td>{{item[1]}}</td>
+                       <td>{{item[2]}}</td>
+                      <td>{{item[3]}}</td>
+                       <td>{{item[4]}}</td>
+                    </tr>
+                     {% endfor %}
+                </tbody></table>
+
+                </div>
+
+                <!-- WORD INFO -->
+              </div>
+				</div>
+				<div class="tab-pane" id="2a">
+          <h3>Named Entities</h3>
+           {% for item in custom_namedentities %}
+          <li><span class="badge badge-success">{{item}}</span></li>
+          {% endfor %}
+				</div>
+        <div class="tab-pane" id="3a">
+          <h3>Parts of Speech</h3>
+            <div class="container">
+           <!-- Parts of Speech Tagging  -->
+          <div class="card-footer text-muted">
+                <table class="table table-striped table-hover table-dark" >
+                    
+                <thead>
+                  <tr>
+                    <th scope="col">Token</th>
+                    <th scope="col">TAG</th>
+                    <th scope="col">POS</th>
+                    <th scope="col">Dependency</th>
+                    
+                  </tr>
+                  {% for item in custom_postagging  %}
+                </thead>
+                <tbody>
+                  <tr>
+                    
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                     <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                   
+                  </tr>
+                   {% endfor %}
+              </tbody></table>
+
+              </div>
+
+     <!-- Parts of Speech Tagging  -->
+      </div>
+				</div>
+          <div class="tab-pane" id="4a">
+          <h3>Sentiment Analysis</h3>
+          	  <div class="card-footer text-muted">
+			  <table class="table table-striped table-hover table-dark" >
+			  <thead>
+			    <tr>
+			      <th scope="col">Sentiment</th>
+			      <th scope="col">Polarity</th>
+			      <th scope="col">Subjectivity</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th scope="row">Score:</th>
+			      <td>{{blob_sentiment}}</td>
+			      <td>{{blob_subjectivity}}</td>
+			    </tr>
+			</tbody></table>
+
+			</div>
+
+				</div>
+			
+		<div class="tab-pane" id="5a">
+          <h3>Meaning</h3>
+
+             <!-- For loop Previously Here  -->
+      <table class="table table-striped table-hover table-dark" >
+        <thead >
+          <tr>
+            <th scope="col">Token</th>
+            <th scope="col">Meaning</th>
+           
+          </tr>
+        </thead>
+         {% for i in custom_tokens%}
+        <tbody>
+          <tr>
+            <td>{{i}}</th>
+            <td><a href="http://www.dictionary.com/browse/{{i}}?s="  target="_blank" type="button" class="btn btn-primary" style="float:right;font-size:9px;color:#fff;">View</a></td>
+            
+          </tr>
+      </tbody>{% endfor %}
+    </table>
+  
+				</div>
+			</div>
+
+  </div>
+</div>
+<!-- End of Main Container -->
+<br/>
+<br/>
+
+<div class="container">
+  <h3>JSON form for Word Info </h3>
+  <pre>{{result_json }}</pre>
+</div>
+
+
+
+  <!-- <span class="badge badge-success">2</span>
+<span class="badge badge-warning">4</span>
+<span class="badge badge-red">6</span>
+<span class="badge badge-info">8</span>
+<span class="badge badge-inverse">10</span>
+  -->
+</body>
+{% endblock %}
+
+{% block styles %}
+{{super()}} <!-- Allows Javascripts and other styles to be inclusive in bootstrap -->
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{% endblock %}

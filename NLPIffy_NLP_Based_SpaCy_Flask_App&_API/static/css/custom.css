@@ -1,0 +1,94 @@
+li{
+  font-size: 16px;
+}
+#exTab1 .tab-content {
+  color : white;
+  background-color: #3872fb;#428bca;
+  padding : 5px 15px;
+}
+
+#exTab2 h3 {
+  color : white;
+  background-color: #3872fb;#428bca;
+  padding : 5px 15px;
+}
+
+/* remove border radius for the tab */
+
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+
+/* change border radius for the tab , apply corners on top*/
+
+#exTab3 .nav-pills > li > a {
+  border-radius: 4px 4px 0 0 ;
+}
+
+#exTab3 .tab-content {
+  color : white;
+  background-color: #3872fb;#428bca;
+  padding : 5px 15px;
+}
+
+.badge {
+ font-size: 12.025px;
+  font-weight: bold;
+}
+.badge:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.badge-red {
+  background-color: red;
+}
+.badge-red:hover {
+  background-color: #953b39;
+}
+.badge-warning {
+  background-color: #f89406;
+}
+.badge-warning:hover {
+  background-color: #c67605;
+}
+.badge-success {
+  background-color: #468847;
+}
+.badge-success:hover {
+  background-color: #356635;
+}
+.badge-info {
+  background-color: #3a87ad;
+}
+.badge-info:hover {
+  background-color: #2d6987;
+}
+.badge-inverse {
+  background-color: #333333;
+}
+.badge-inverse:hover {
+  background-color: #1a1a1a;
+}
+
+
+  .spinner-1:before{
+      content: "";
+      box-sizing: border-box;
+      position: absolute;
+      top:50%;
+      left: 50%;
+      height: 60px;
+      width: 60px;
+      margin-top: -30px;
+      margin-left: -30px;
+      border-radius: 50%;
+      border:6px solid transparent;
+      border-top-color: #0091EA;
+      animation: spinner 0.7s linear infinite;
+    }
+    @keyframes spinner {
+      to {
+        transform: rotate(360deg);
+      }
+

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Summaryzer</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+</head>
+<body><div class="navbar-fixed">
+   <nav class="grey darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo">Summaryzer</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+         <li><a href="{{url_for('compare_summary')}}">Compare Summarizers</a></li>
+         <li><a href="#aboutapp">About</a></li>
+      </ul>
+
+      
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>
+	<ul id="nav-mobile" class="sidenav">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+         <li><a href="{{url_for('compare_summary')}}">Compare</a></li>
+         <li><a href="#contactme">About</a></li>
+      </ul>
+<!--Slider -->
+ <section class="slider">
+  <div id="index-banner" class="parallax-container">
+     <ul class="slides">
+      <li>
+        <img src="backgroundblue.png" alt="Unsplashed background img 1" alt="">
+        <div class="caption center-align">
+          <h2>Summarization Simplified</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+           Using SpaCy,Gensim,NLTK and Sumy
+          </h5>
+         
+           <div class="row center">
+          <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Refresh</a>
+        </div>
+        </div>
+      </li>
+      <li>
+       <img src="backgroundpurple.png" alt="Unsplashed background img 1">
+        <div class="caption left-align">
+          <h2>Text Summarizer with SpaCy</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+           NLP based App
+          </h5>
+          <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">Learn More</a>
+        </div>
+      </li>
+   
+    </ul>
+  </div>
+</section>
+
+<!-- Start of Main Section -->
+ <div class="container">
+    <div class="section">
+       
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+           <form method="POST" action="/analyze">
+         <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
+          
+         <br/>
+         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
+          
+        </form>
+          </div>
+        </div>
+
+      </div>
+
+        <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+           <form method="POST" action="/analyze_url">
+         <input type="text" name="raw_url" placeholder="Enter URL Here" required="true">
+         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Summarize</button>
+          
+        </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <!-- End -->
+
+  <!-- Result Display-->
+  <section class="section section-solutions-about grey darken-2">
+ <div class="container white-text">
+ 
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Your Text</h5>
+             <p>Reading Time: <span style="color:#0091EA;">{{ final_reading_time }} min </span></p>
+            <p class="light">{{ctext}}</p>
+            <div class="alert alert-info" role="alert"><p>Time Elapsed: <span style="color:#0091EA;">{{ final_time }} mins </span></p><br/>
+             
+        </div>
+          </div>
+        </div>
+
+        <div class="col s12 m6 grey darken-3">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+            <h5 class="center">Summarized</h5>
+              <div class="" role="alert">
+              <p>Reading Time: <span style="color:#0091EA;">{{ summary_reading_time }} min </span></p>
+        </div>
+            <p class="light">{{ final_summary }}</p>
+          
+          </div>
+        </div>
+
+      </div>
+
+  
+  </div>
+</section>
+
+
+  
+  <footer class="page-footer grey darken-4">
+    <div class="container" id="aboutapp">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About Summary App</h5>
+          <p class="grey-text text-lighten-4">Using Spacy,NLTk and Gensim for Text Summarization
+.</p>
+
+
+        </div>
+      
+   <div class="col l3 s12">
+          <h5 class="white-text">Connect With Me</h5>
+          <ul>
+            <a href="https://facebook.com/jcharistech" target="_blank" class="white-text">
+            <i class="fab fa-facebook fa-4x"></i>
+          </a>
+          <a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text">
+            <i class="fab fa-linkedin fa-4x"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text">
+            <i class="fab fa-youtube-square fa-4x"></i>
+          </a>
+           <a href="https://github.com/Jcharis/" target="_blank" class="white-text">
+            <i class="fab fa-github-square fa-4x"></i>
+          </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">Jesse E.Agbe & JCharisTech</a><br/>
+      <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">Jesus Saves @JCharisTech</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="static/js/materialize.js"></script>
+  <script src="static/js/init.js"></script>
+<!-- Jesse JCharis -->
+  </body>
+</html>

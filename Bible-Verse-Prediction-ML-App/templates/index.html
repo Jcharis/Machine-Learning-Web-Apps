@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>BibleVerse Predictor</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+</head>
+<body><div class="navbar-fixed">
+   <nav class="purple darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo"><h5>Verse Predictor</h5></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+         <li><a href="#aboutapp">About</a></li>
+      </ul>
+
+      
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+</div>
+	<ul id="nav-mobile" class="sidenav">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+         <li><a href="#contactme">About</a></li>
+      </ul>
+<!--Slider -->
+ <section class="slider">
+  <div id="index-banner" class="parallax-container">
+     <ul class="slides">
+      <li>
+        <img src="backgroundblue.png" alt="Unsplashed background img 1" alt="">
+        <div class="caption center-align">
+          <h2>Bible Verse Prediction </h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+           Using Machine Learning
+          </h5>
+         
+           <div class="row center">
+          <a href="{{url_for('index')}}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Refresh</a>
+        </div>
+        </div>
+      </li>
+      <li>
+       <img src="backgroundpurple.png" alt="Unsplashed background img 1">
+        <div class="caption left-align">
+          <h2>Bible Passage Prediction</h2>
+          <h5 class="light grey-text text-lighten-3 hide-on-small-only">
+           Predicting Location of Text
+          </h5>
+          <a href="#aboutapp" class="btn btn-large waves-effect waves-light light-blue lighten-1">Learn More</a>
+        </div>
+      </li>
+   
+    </ul>
+  </div>
+</section>
+
+<!-- Start of Main Section -->
+ <div class="container">
+    <div class="section">
+       
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="input-field col s12 m10">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">chrome_reader_mode</i></h2>
+           <form method="POST" action="/predict">
+         <textarea name="rawtext" cols="3" rows="5" class="form-control" required="true" placeholder="Enter Text Here"></textarea>
+          
+         <br/>
+         <button class="btn btn-small waves-effect waves-light light-blue lighten-1" type="reset">Clear</button>
+          <button class="btn btn-small waves-effect waves-light purple lighten-1" type="submit">Predict</button>
+          
+        </form>
+          </div>
+        </div>
+
+      </div>
+
+      <br/>
+      <div class="row">
+      	<div>
+      		<p>Your Verse was : <i>{{ raw_text }}</i></p>
+      	</div>
+      	
+      </div>
+
+    </div>
+  </div>
+  <!-- End -->
+
+  <!-- Result Display-->
+ <!-- SECTION: SOLUTIONS ABOUT -->
+  <section class="section section-solutions-about grey darken-2 ">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="row">
+            <div class="col s12">
+              <ul class="tabs grey darken-2">
+                <li class="tab col s3">
+                  <a href="#tab1" class="blue-text">Result</a>
+                </li>
+                <li class="tab col s3">
+                  <a href="#tab2" class="blue-text">Sentiment</a>
+                </li>
+         
+              </ul>
+            </div>
+            <div id="tab1" class="col s12">
+              <h5>Result</h5>
+              <p style="font-style:italic;">Testament of the Bible</p>
+              {% if prediction == 0 %}
+                 <button class="btn btn-small waves-effect waves-light light-blue lighten-1">Old Testament</button>
+              {% elif prediction == 1 %}
+              	<button class="btn btn-small waves-effect waves-light light-green lighten-1">New Testament </button>
+              {%endif%}
+              	<p>Score:{{ pred_score }}</p>
+            </div>
+            <div id="tab2" class="col s12">
+              <h5>Sentiment</h5>
+              <p>Verse Sentiment <button class="btn btn-small waves-effect waves-light light-teal lighten-1"> {{verse_sentiment }}</button> </p>
+
+            
+              	
+
+            </div>
+        
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  
+  <footer class="page-footer purple darken-4">
+    <div class="container" id="aboutapp">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About Bible Verse Predictor</h5>
+          <p class="grey-text text-lighten-4">Using Machine Learning to location of predict bible verses
+.</p>
+
+
+        </div>
+      
+   <div class="col l3 s12">
+          <h5 class="white-text">Connect With Me</h5>
+          <ul>
+            <a href="https://facebook.com/jcharistech" target="_blank" class="white-text">
+            <i class="fab fa-facebook fa-4x"></i>
+          </a>
+          <a href="https://gh.linkedin.com/in/jesiel-emmanuel-agbemabiase-6935b690" target="_blank" class="white-text">
+            <i class="fab fa-linkedin fa-4x"></i>
+          </a>
+          <a href="https://www.youtube.com/channel/UC2wMHF4HBkTMGLsvZAIWzRg" target="_blank" class="white-text">
+            <i class="fab fa-youtube-square fa-4x"></i>
+          </a>
+           <a href="https://github.com/Jcharis/" target="_blank" class="white-text">
+            <i class="fab fa-github-square fa-4x"></i>
+          </a>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">Jesse E.Agbe & JCharisTech</a><br/>
+      <a class="white-text text-lighten-3" href="https://jcharistech.wordpress.com">Jesus Saves @JCharisTech</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="static/js/materialize.js"></script>
+  <script src="static/js/init.js"></script>
+<!-- Jesse JCharis -->
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nationality Predictor App</title>
+	 <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">Nationality Predictor</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/gender">Gender</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0" method="POST" action="/predict">
+      <input class="form-control mr-sm-2" type="text" name="namequery" placeholder="Nationality" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Predict</button>
+    </form>
+  </div>
+</nav>
+<br/>
+<br/>
+
+<div class="jumbotron" style="background:#0686e4;color:#fff">
+    <div class="container">
+      <h2 class="display-3">Nationality of Names Predictor</h2>
+      <p>Using Machine Learning </p>
+      <p><a class="btn btn-success waves-effect btn-lg" href="/" role="button">Refresh &raquo;</a></p>
+    </div>
+  </div>
+<br/>
+
+<div class="container" >
+<form method="POST" action="/predict">
+	<input type="text" name="namequery" class="form-control">
+	<button type="reset" class="btn btn-primary">Clear</button>
+	<button type="submit" class="btn btn-primary">Predict</button>
+</form>
+</div>
+<br/>
+<br/>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+          <div class="card mb-10 shadow-sm" id="custom_card">
+          	<h4>Original Name</h4>
+          	<p>{{ name }}</p>
+			
+		</div>
+	</div>
+
+
+
+	<div class="col-md-6">
+          <div class="card mb-10 shadow-sm" id="custom_card2">
+          	<h4>Prediction</h4>
+			<div class="alert alert-success" role="alert"><p>{{ prediction }}</p></div>
+			
+		</div>
+	</div>
+</div>
+	<br/>
+  <br/>
+  <br/>
+
+</div>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+
+</body>
+</html>

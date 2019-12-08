@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "spamdetector"
+version = "0.0.1"
+description = "Spam Detector ML Package"
+authors = ["Jesse E.Agbe JCharis <youremail@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+joblib = "^0.14.0"
+scikit-learn = "^0.22.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^3.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

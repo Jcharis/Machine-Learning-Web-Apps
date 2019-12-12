@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NLPiffy App</title>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+<style type="text/css">
+	.main-section{
+	margin:0 auto;
+	padding: 20px;
+	margin-top: 100px;
+	background-color: #fff;
+	box-shadow: 0px 0px 20px #c1c1c1;
+}
+#custom_card{
+	background-color:grey;
+	color:#fff;
+	padding:10px;
+}
+#custom_card2{
+	background-color:#383838;
+	color:#fff;
+	padding:10px;
+}
+</style>
+  
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="/">NLPiffy App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="/previewer">Previewer</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+
+
+    </ul>
+
+  </div>
+</nav>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+          <div class="card mb-10 shadow-sm" id="custom_card">
+            <h4>Original Data</h4>
+            <p>{{ newtext }}</p>
+      
+    </div>
+  </div>
+  <div class="col-md-6">
+          <div class="card mb-10 shadow-sm" id="custom_card2">
+            <h4>MarkDown Preview</h4>
+      <p>{{ result|markdown }}</p>
+      
+    </div>
+  </div>
+</div>
+  
+
+</div>
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/js/mdb.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+<script type="text/javascript">
+	$('.file_upload').file_upload();
+</script>
+</body>
+</html>
+
+</body>
+</html>

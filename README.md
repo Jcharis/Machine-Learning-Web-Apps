@@ -21,7 +21,7 @@ Building and Embedding Machine Learning Model into a Web App(With Flask,Streamli
 + Express.js
 + Brainjs
 + Body-parser
-+ etc
+
 
 
 

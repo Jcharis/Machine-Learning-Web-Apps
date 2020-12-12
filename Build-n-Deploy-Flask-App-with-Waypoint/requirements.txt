@@ -1,0 +1,6 @@
+Flask==1.1.2
+spacy==2.3.4
+Flask_Bcrypt==0.7.1
+gunicorn
+gevent
+Flask-Markdown

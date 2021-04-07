@@ -5,7 +5,7 @@ from flask_material import Material
 import pandas as pd 
 import numpy as np 
 
-# ML Pkg
+# ML Pkg Add requirements text file with new dependencies vesrions.
 from sklearn.externals import joblib
 
 
@@ -61,3 +61,4 @@ def analyze():
 
 if __name__ == '__main__':
 	app.run(debug=True)
+	

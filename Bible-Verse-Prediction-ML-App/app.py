@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,url_for
 import pandas as pd 
 import numpy as np 
 
-# ML Packages
+# ML Packages Add a requirements text file and new version of dependencies.
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.externals import joblib
 

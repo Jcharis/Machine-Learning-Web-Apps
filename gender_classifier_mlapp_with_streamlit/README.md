@@ -12,6 +12,8 @@
 #### Prediction
 ![](images/gc_app04.png)
 
+### Add a requirements.txt and setup.sh file for deployment 
+
 
 #### By
 + Jesse E.Agbe(JCharis)

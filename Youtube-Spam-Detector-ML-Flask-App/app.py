@@ -4,7 +4,7 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.externals import joblib
-
+#Add requirements file and new version dependencies.
 
 app = Flask(__name__)
 

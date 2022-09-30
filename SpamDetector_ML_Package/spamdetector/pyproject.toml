@@ -6,7 +6,7 @@ authors = ["Jesse E.Agbe JCharis <youremail@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-joblib = "^0.14.0"
+joblib = "^1.2.0"
 scikit-learn = "^0.22.0"
 
 [tool.poetry.dev-dependencies]
